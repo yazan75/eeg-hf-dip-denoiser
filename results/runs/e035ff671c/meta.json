@@ -1,0 +1,15 @@
+{
+  "label": "L",
+  "channel": "C3",
+  "start": 28560.0,
+  "dur": 30.0,
+  "sf": 1000.0,
+  "best_step": 2100,
+  "selection": "snr",
+  "normalize": true,
+  "noise_ch": 32,
+  "lr": 0.001,
+  "seed": 1234,
+  "use_artifact_matrix": true,
+  "artifact_max_frac": 0.3
+}

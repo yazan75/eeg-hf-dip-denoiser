@@ -1,0 +1,13 @@
+{
+  "label": "W",
+  "channel": "F12",
+  "start": 30.0,
+  "dur": 30.0,
+  "sf": 1000.0,
+  "best_step": 1450,
+  "selection": "snr",
+  "agg": "mean",
+  "snr_mode": "raw",
+  "model": "mini_relu",
+  "is_artifact": 0
+}

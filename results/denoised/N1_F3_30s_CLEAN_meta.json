@@ -1,0 +1,13 @@
+{
+  "label": "N1",
+  "channel": "F3",
+  "start": 60.0,
+  "dur": 30.0,
+  "sf": 1000.0,
+  "best_step": 600,
+  "selection": "mse",
+  "agg": "mean",
+  "snr_mode": "raw",
+  "model": "mini_relu",
+  "is_artifact": 0
+}

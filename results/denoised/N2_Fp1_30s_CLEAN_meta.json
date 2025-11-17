@@ -1,0 +1,13 @@
+{
+  "label": "N2",
+  "channel": "Fp1",
+  "start": 360.0,
+  "dur": 30.0,
+  "sf": 1000.0,
+  "best_step": 600,
+  "selection": "mse",
+  "agg": "mean",
+  "snr_mode": "raw",
+  "model": "eegnet",
+  "is_artifact": 0
+}

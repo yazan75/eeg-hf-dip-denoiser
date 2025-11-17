@@ -1,0 +1,8 @@
+.DS_Store
+data/
+*.edf
+*.npz
+*.npy
+*.mat
+*.h5
+denoise/

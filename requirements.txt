@@ -1,0 +1,6 @@
+mne
+torch
+numpy
+scipy
+matplotlib
+pyyaml

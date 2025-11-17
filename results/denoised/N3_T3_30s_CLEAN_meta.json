@@ -1,0 +1,13 @@
+{
+  "label": "N3",
+  "channel": "T3",
+  "start": 1140.0,
+  "dur": 30.0,
+  "sf": 1000.0,
+  "best_step": 150,
+  "selection": "snr",
+  "agg": "mean",
+  "snr_mode": "raw",
+  "model": "leakydeep",
+  "is_artifact": 0
+}
