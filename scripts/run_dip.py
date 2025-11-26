@@ -50,16 +50,16 @@ from utils.plot_utils import (
 from utils.metrics_eeg import export_presentation_table
 from models.dip_1d import MODEL_ALIASES
 # ---------------- Experiment toggles (local to this script) ----------------
-MODEL_NAME = "eegnet"     # {"eegnet","mini_relu","leakydeep", "leakymini"}
+MODEL_NAME = "hf_eegnet"     # {"eegnet","mini_relu","leakydeep", "leakymini","hfeegnet}
 NORMALIZE_FOR_TRAIN = True   # z-score target EEG window for DIP training
 SELECTION = "mse"            # {"snr","mse"} early-stopping
 SNR_SELECTION_MODE = "raw"   # {"raw","std"} how SNR is computed for selection (when SELECTION=="snr")
 AGG_METHOD = "mean"        # {"median","mean"} aggregation over non-EEG channels in SNR
 
-SNAPSHOT_EVERY = 50
+SNAPSHOT_EVERY = 200
 MAX_STEPS = 3000
 PATIENCE = 600
-NOISE_CH = 32
+NOISE_CH = 1
 LR = 1e-3
 
 # ---------------- Utils ----------------
@@ -121,14 +121,16 @@ def dip_optimize_single_window(
     x = torch.from_numpy(sig_std.astype(np.float32))[None, None, :].to(device)
     T = x.shape[-1]
 
-    if model_name == "eegnet":
-        # EEGNetPrior expects (B, C, T) input
-        z = torch.randn(1, 1, T, device=device)
+    if model_name in ["eegnet", "hf_eegnet", "hfeegnet"]:
+        # structured priors expect single-channel noise
+        z = torch.randn(1, NOISE_CH, T, device=device)
         net = get_dip(model_name, samples=T).to(device)
     else:
+        # classic DIP models take multi-channel noise input
         z = torch.randn(1, NOISE_CH, T, device=device)
         net = get_dip(model_name, noise_ch=NOISE_CH).to(device)
-    opt = optim.Adam(net.parameters(), lr=LR)
+    #opt = optim.Adam(net.parameters(), lr=LR)
+    opt = optim.SGD(net.parameters(), lr=LR, momentum=0.8)
     mse_loss = nn.MSELoss()
 
     # Track best

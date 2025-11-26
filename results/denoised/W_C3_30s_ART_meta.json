@@ -8,6 +8,6 @@
   "selection": "mse",
   "agg": "mean",
   "snr_mode": "raw",
-  "model": "eegnet",
+  "model": "hf_eegnet",
   "is_artifact": 1
 }

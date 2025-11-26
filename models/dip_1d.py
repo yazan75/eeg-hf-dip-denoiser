@@ -12,6 +12,7 @@
 
 import torch
 import torch.nn as nn
+from models.hfeegnet import HFEEGNetPrior
 
 # ----------------------------- helpers ------------------------------
 
@@ -198,6 +199,8 @@ def get_dip(model_name, noise_ch=32, samples=None):
         model = DIP1D_LeakyDeep(noise_ch=noise_ch)
     elif model_name == "leakymini":
         model = DIP1D_LeakyMini(noise_ch=noise_ch)
+    elif model_name == "hf_eegnet":
+        return HFEEGNetPrior()
     elif model_name == "eegnet":   # <--- NEW
         if samples is None:
             raise ValueError("Must provide samples=T for EEGNetPrior")
@@ -214,5 +217,6 @@ MODEL_ALIASES = {
         "mini_relu": "Shallow ReLU Prior",
         "leakymini": "Shallow LeakyRelu",
         "leakydeep": "Deep Residual LeakyRelu",
-        "eegnet": "EEGNet"
+        "eegnet": "EEGNet",
+        "hf_eegnet": "hf_eegnet"
     }
